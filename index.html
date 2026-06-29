@@ -63,11 +63,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: transparent;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
       transition: background var(--transition), border-bottom var(--transition);
     }
     .nav.scrolled {
-      background: rgba(0,0,0,0.92);
+      background: rgba(0,0,0,0.95);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(12px);
     }
@@ -83,11 +84,14 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
+      color: rgba(0,0,0,0.55);
       transition: color 0.25s;
     }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a.active { color: var(--white); }
+    .nav.scrolled .nav-links a { color: rgba(255,255,255,0.7); }
+    .nav-links a:hover { color: #000; }
+    .nav.scrolled .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #000; }
+    .nav.scrolled .nav-links a.active { color: #fff; }
     .nav-cta {
       background: var(--accent);
       color: #000;
@@ -108,9 +112,10 @@
     }
     .nav-mobile-toggle span {
       display: block; width: 24px; height: 2px;
-      background: var(--white);
+      background: #000;
       transition: var(--transition);
     }
+    .nav.scrolled .nav-mobile-toggle span { background: var(--white); }
     .mobile-menu {
       display: none;
       position: fixed;
@@ -149,6 +154,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #fff;
     }
     .hero-video {
       position: absolute;
@@ -156,17 +162,16 @@
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.55;
+      opacity: 0.08;
     }
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.3) 0%,
-        rgba(0,0,0,0.1) 40%,
-        rgba(0,0,0,0.6) 80%,
-        rgba(0,0,0,1) 100%
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0) 70%,
+        rgba(255,255,255,0.95) 100%
       );
     }
     .hero-content {
@@ -174,49 +179,28 @@
       z-index: 2;
       text-align: center;
       padding: 0 20px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.3s forwards;
+      max-width: 1100px;
     }
     .hero-title {
       line-height: 1.0;
-      margin-bottom: 28px;
+      margin-bottom: 40px;
       opacity: 0;
-      animation: fadeUp 0.8s 0.5s forwards;
+      animation: fadeUp 0.8s 0.3s forwards;
+      white-space: nowrap;
     }
-    .hero-title-line1 {
-      display: block;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: clamp(56px, 8vw, 110px);
-      font-weight: 400;
-      color: var(--white);
-    }
-    .hero-title-line2 {
-      display: block;
+    .hero-title-word1 {
       font-family: var(--sans);
-      font-size: clamp(54px, 7.5vw, 102px);
+      font-size: clamp(44px, 7vw, 100px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: var(--accent);
-      text-transform: uppercase;
+      color: #000;
     }
-    .hero-desc {
-      font-size: clamp(15px, 1.5vw, 17px);
-      color: rgba(255,255,255,0.6);
-      max-width: 520px;
-      margin: 0 auto 40px;
-      line-height: 1.65;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.7s forwards;
+    .hero-title-word2 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(44px, 7vw, 100px);
+      font-weight: 400;
+      color: var(--accent);
     }
     .hero-actions {
       display: flex;
@@ -224,7 +208,7 @@
       justify-content: center;
       flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUp 0.8s 0.9s forwards;
+      animation: fadeUp 0.8s 0.6s forwards;
     }
     .btn-primary {
       background: var(--accent);
@@ -240,17 +224,23 @@
     .btn-primary:hover { background: #d4ff1a; transform: translateY(-2px); }
     .btn-outline {
       background: transparent;
-      color: var(--white);
+      color: #000;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 16px 32px;
       border-radius: 100px;
-      border: 1.5px solid rgba(255,255,255,0.3);
+      border: 1.5px solid rgba(0,0,0,0.25);
       transition: border-color 0.25s, background 0.25s, transform 0.25s;
     }
-    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn-outline:hover { border-color: #000; background: rgba(0,0,0,0.04); transform: translateY(-2px); }
+    /* btn-outline dark variant (inside dark sections) */
+    .dark-section .btn-outline {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .dark-section .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
     .hero-scroll {
       position: absolute;
       bottom: 40px;
@@ -268,12 +258,12 @@
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(0,0,0,0.3);
     }
     .hero-scroll-line {
       width: 1px;
       height: 48px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
       animation: scrollPulse 1.5s ease-in-out infinite;
     }
 
@@ -303,7 +293,7 @@
     }
 
     /* ─── ABOUT ──────────────────────────────────────────── */
-    .about { padding: 120px 0; background: var(--bg); }
+    .about { padding: 80px 0; background: var(--bg); }
     .about-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -373,8 +363,8 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
       border-top: 1px solid var(--border);
-      padding-top: 60px;
-      margin-top: 60px;
+      padding-top: 40px;
+      margin-top: 40px;
     }
     .stat-item {
       padding: 0 24px;
@@ -398,8 +388,8 @@
     }
 
     /* ─── CATEGORIES ─────────────────────────────────────── */
-    .categories { padding: 100px 0; background: var(--bg2); }
-    .section-header { margin-bottom: 64px; }
+    .categories { padding: 70px 0; background: var(--bg2); }
+    .section-header { margin-bottom: 40px; }
     .section-tag {
       display: inline-flex;
       align-items: center;
@@ -501,12 +491,12 @@
     }
 
     /* ─── PROJECTS ───────────────────────────────────────── */
-    .projects { padding: 100px 0; background: var(--bg); }
+    .projects { padding: 70px 0; background: var(--bg); }
     .projects-intro {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 56px;
+      margin-bottom: 36px;
       gap: 40px;
     }
     .projects-coming {
@@ -555,7 +545,7 @@
     }
 
     /* ─── PROCESS ────────────────────────────────────────── */
-    .process { padding: 100px 0; background: var(--bg2); }
+    .process { padding: 70px 0; background: var(--bg2); }
     .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -591,7 +581,7 @@
     }
 
     /* ─── FAQ ────────────────────────────────────────────── */
-    .faq { padding: 100px 0; background: var(--bg); }
+    .faq { padding: 70px 0; background: var(--bg); }
     .faq-inner {
       display: grid;
       grid-template-columns: 1fr 1.6fr;
@@ -657,7 +647,7 @@
     }
 
     /* ─── CONTACT ────────────────────────────────────────── */
-    .contact { padding: 100px 0; background: var(--bg2); }
+    .contact { padding: 70px 0; background: var(--bg2); }
     .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
@@ -951,7 +941,7 @@
   <!-- ─── NAVIGATION ─────────────────────────────────────── -->
   <nav class="nav" id="nav">
     <a href="#inicio" class="nav-logo">
-      <img src="logos/Logo_Branco.svg" alt="LimoStudio" id="nav-logo-img">
+      <img src="logos/Logo_Preto.png" alt="LimoStudio" id="nav-logo-img">
     </a>
     <ul class="nav-links">
       <li><a href="#inicio" class="active">Início</a></li>
@@ -985,14 +975,9 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Produtora Audiovisual</p>
       <h1 class="hero-title">
-        <span class="hero-title-line1">Quem conta a sua</span>
-        <span class="hero-title-line2">história?</span>
+        <span class="hero-title-word1">Quem conta sua </span><span class="hero-title-word2">história?</span>
       </h1>
-      <p class="hero-desc">
-        Toda marca tem uma história. O LimoStudio existe para transformar o que você faz em algo que as pessoas vejam, sintam e lembrem.
-      </p>
       <div class="hero-actions">
         <a href="#projetos" class="btn-primary">Ver projetos</a>
         <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank" class="btn-outline">Falar no WhatsApp</a>
@@ -1157,7 +1142,7 @@
   </section>
 
   <!-- ─── PROJECTS ───────────────────────────────────────── -->
-  <section class="projects" id="projetos">
+  <section class="projects dark-section" id="projetos">
     <div class="container">
       <div class="projects-intro">
         <div>
@@ -1405,7 +1390,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="logos/Logo_Branco.svg" alt="LimoStudio">
+          <img src="logos/Logo_Branco.png" alt="LimoStudio">
           <p>Transformamos histórias em imagens que as pessoas veem, sentem e lembram.</p>
         </div>
         <nav class="footer-nav">
@@ -1456,8 +1441,11 @@
   <script>
     // ── Nav scroll behavior ───────────────────────────────
     const nav = document.getElementById('nav');
+    const navLogo = document.getElementById('nav-logo-img');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
+      const scrolled = window.scrollY > 60;
+      nav.classList.toggle('scrolled', scrolled);
+      navLogo.src = scrolled ? 'logos/Logo_Branco.png' : 'logos/Logo_Preto.png';
     });
 
     // ── Active nav link on scroll ─────────────────────────
