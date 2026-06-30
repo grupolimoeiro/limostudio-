@@ -173,9 +173,9 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(0,0,0,0.65) 0%,
-        rgba(0,0,0,0.2) 60%,
-        rgba(0,0,0,0.5) 100%
+        rgba(0,0,0,0.82) 0%,
+        rgba(0,0,0,0.45) 60%,
+        rgba(0,0,0,0.7) 100%
       );
     }
     .hero-content {
@@ -297,7 +297,7 @@
     .marquee-wrap {
       background: var(--accent);
       overflow: hidden;
-      padding: 14px 0;
+      padding: 8px 0;
     }
     .marquee-track {
       display: flex;
@@ -387,29 +387,35 @@
     .about-stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--border);
-      padding-top: 40px;
-      margin-top: 40px;
+      gap: 12px;
+      margin-top: 48px;
     }
     .stat-item {
-      padding: 0 24px;
-      border-right: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s;
     }
-    .stat-item:first-child { padding-left: 0; }
-    .stat-item:last-child { border-right: none; }
+    .stat-item:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(198,255,0,0.25);
+    }
     .stat-number {
-      font-size: clamp(36px, 4vw, 52px);
+      font-size: clamp(36px, 4vw, 54px);
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--accent);
       line-height: 1;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .stat-label {
-      font-size: 13px;
+      font-size: 11px;
       color: var(--muted);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
@@ -516,6 +522,81 @@
       opacity: 1;
     }
 
+    /* Conteúdo de Volume — destaque */
+    .cat-card.cat-featured {
+      aspect-ratio: auto;
+      min-height: 280px;
+      background: var(--accent);
+      grid-column: span 1;
+    }
+    .cat-card.cat-featured img { display: none; }
+    .cat-card.cat-featured .cat-card-overlay { display: none; }
+    .cat-card.cat-featured .cat-card-body {
+      position: relative;
+      padding: 32px 28px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .cat-card.cat-featured .cat-card-num { color: rgba(0,0,0,0.4); }
+    .cat-card.cat-featured .cat-card-name { color: #000; font-size: clamp(22px, 2.5vw, 30px); }
+    .cat-card.cat-featured .cat-card-desc {
+      color: rgba(0,0,0,0.65);
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    /* ─── FOTOS ──────────────────────────────────────────── */
+    .fotos { padding: 70px 0; background: var(--bg); }
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .foto-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+    .foto-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .foto-card:hover img { transform: scale(1.06); }
+    .foto-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    }
+    .foto-card-body {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px 20px;
+    }
+    .foto-card-name {
+      font-size: 20px;
+      font-weight: 700;
+      font-family: var(--serif);
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .foto-card-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .foto-card:hover .foto-card-desc { max-height: 60px; opacity: 1; }
+
     /* ─── PROJECTS ───────────────────────────────────────── */
     .projects { padding: 70px 0; background: var(--bg); }
     .projects-intro {
@@ -607,7 +688,7 @@
     }
 
     /* ─── FAQ ────────────────────────────────────────────── */
-    .faq { padding: 70px 0; background: var(--bg); }
+    .faq { padding: 70px 0; background: #fff; }
     .faq-inner {
       display: grid;
       grid-template-columns: 1fr 1.6fr;
@@ -615,16 +696,17 @@
       align-items: start;
     }
     .faq-left { position: sticky; top: 120px; }
-    .faq-left .section-title { margin-bottom: 20px; }
+    .faq-left .section-title { margin-bottom: 20px; color: #000; }
     .faq-left p {
       font-size: 15px;
-      color: var(--muted);
+      color: #555;
       line-height: 1.65;
       margin-bottom: 32px;
     }
+    .faq .section-tag { color: #000; border-color: rgba(0,0,0,0.15); }
     .faq-list { }
     .faq-item {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
       overflow: hidden;
     }
     .faq-question {
@@ -639,12 +721,13 @@
       font-size: 16px;
       font-weight: 600;
       line-height: 1.4;
+      color: #111;
       transition: color 0.25s;
     }
-    .faq-question:hover .faq-question-text { color: var(--accent); }
+    .faq-question:hover .faq-question-text { color: #000; }
     .faq-icon {
       width: 28px; height: 28px;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid rgba(0,0,0,0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -652,7 +735,7 @@
       flex-shrink: 0;
       transition: border-color 0.25s, background 0.25s, transform 0.4s;
       font-size: 16px;
-      color: var(--muted);
+      color: #555;
     }
     .faq-item.open .faq-icon {
       background: var(--accent);
@@ -668,7 +751,7 @@
     .faq-answer p {
       padding: 0 0 24px;
       font-size: 15px;
-      color: var(--muted);
+      color: #555;
       line-height: 1.75;
     }
 
@@ -803,8 +886,8 @@
     /* ─── TRABALHE CONOSCO ───────────────────────────────── */
     .trabalhe {
       padding: 80px 0;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
+      background: var(--accent);
+      border-top: none;
     }
     .trabalhe-inner {
       display: flex;
@@ -816,21 +899,28 @@
       font-size: clamp(28px, 3.5vw, 44px);
       font-weight: 800;
       letter-spacing: -0.03em;
+      color: #000;
     }
     .trabalhe h2 em {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--accent);
+      color: #000;
+      opacity: 0.6;
     }
     .trabalhe p {
       font-size: 15px;
-      color: var(--muted);
+      color: rgba(0,0,0,0.6);
       max-width: 400px;
       line-height: 1.65;
       margin-top: 12px;
     }
     .trabalhe-right { flex-shrink: 0; }
+    .trabalhe .btn-primary {
+      background: #000;
+      color: var(--accent);
+    }
+    .trabalhe .btn-primary:hover { background: #111; }
 
     /* ─── FOOTER ─────────────────────────────────────────── */
     .footer {
@@ -950,12 +1040,14 @@
       .projects-intro { flex-direction: column; align-items: flex-start; }
       .wa-float span { display: none; }
       .wa-float { padding: 14px; border-radius: 50%; }
+      .fotos-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
       .categories-grid { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .projects-placeholder { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: center; }
+      .fotos-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -1038,7 +1130,6 @@
     <div class="container">
       <div class="about-inner">
         <div class="about-left">
-          <div class="about-tag reveal">Sobre nós</div>
           <h2 class="about-headline reveal reveal-delay-1">
             Toda marca tem uma<br><em>história que merece</em><br>ser contada.
           </h2>
@@ -1151,13 +1242,62 @@
           </div>
         </div>
 
-        <div class="cat-card reveal reveal-delay-2">
-          <img src="banners/CONTEUDODEVOLUME.png" alt="Conteúdo de Volume" loading="lazy">
-          <div class="cat-card-overlay"></div>
+        <div class="cat-card cat-featured reveal reveal-delay-2">
           <div class="cat-card-body">
             <div class="cat-card-num">07</div>
             <div class="cat-card-name">Conteúdo de Volume</div>
             <div class="cat-card-desc">Produção contínua e estratégica de vídeos para gerar alcance e relevância, com tendências, chamadas rápidas e conteúdos que mantém sua marca em evidência.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOTOS ─────────────────────────────────────────── -->
+  <section class="fotos" id="fotos">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Fotografia</div>
+        <h2 class="section-title">
+          Imagens que contam<br><em>histórias sem palavras</em>
+        </h2>
+        <p class="section-subtitle">Da foto de produto ao editorial de moda, cada clique captura o que sua marca representa.</p>
+      </div>
+
+      <div class="fotos-grid">
+        <div class="foto-card reveal">
+          <img src="banners/FOTOSTILL.png" alt="Still" loading="lazy">
+          <div class="foto-card-overlay"></div>
+          <div class="foto-card-body">
+            <div class="foto-card-name">Still</div>
+            <div class="foto-card-desc">Fotografias de produto com precisão técnica e estética refinada.</div>
+          </div>
+        </div>
+
+        <div class="foto-card reveal reveal-delay-1">
+          <img src="banners/MODA.png" alt="Fashion" loading="lazy">
+          <div class="foto-card-overlay"></div>
+          <div class="foto-card-body">
+            <div class="foto-card-name">Fashion</div>
+            <div class="foto-card-desc">Editoriais que traduzem identidade visual e posicionamento de marca.</div>
+          </div>
+        </div>
+
+        <div class="foto-card reveal reveal-delay-2">
+          <img src="banners/PRODUCAO.png" alt="Produção" loading="lazy">
+          <div class="foto-card-overlay"></div>
+          <div class="foto-card-body">
+            <div class="foto-card-name">Produção</div>
+            <div class="foto-card-desc">Imagens de bastidores e processos que revelam o valor por trás da criação.</div>
+          </div>
+        </div>
+
+        <div class="foto-card reveal reveal-delay-3">
+          <img src="banners/COBERTURA.png" alt="Cobertura" loading="lazy">
+          <div class="foto-card-overlay"></div>
+          <div class="foto-card-body">
+            <div class="foto-card-name">Cobertura</div>
+            <div class="foto-card-desc">Registro completo de eventos, lançamentos e momentos especiais.</div>
           </div>
         </div>
       </div>
