@@ -522,7 +522,7 @@
     /* Conteúdo de Volume — destaque */
     .cat-card.cat-featured {
       grid-column: 1 / -1;
-      height: clamp(160px, 17vw, 200px);
+      min-height: clamp(190px, 19vw, 230px);
       display: flex;
       position: relative;
       background: transparent;
@@ -596,10 +596,12 @@
       transition: background 0.25s, transform 0.25s, gap 0.25s;
     }
     .cat-featured-btn:hover { background: #1a1a1a; transform: translateY(-2px); gap: 12px; }
-    @media (max-width: 720px) {
-      .cat-card.cat-featured { height: auto; flex-direction: column; }
-      .cat-featured-media { border-radius: var(--radius) var(--radius) 0 0; flex: 1 1 200px; }
+    @media (max-width: 900px) {
+      .cat-card.cat-featured { min-height: 0; height: auto; flex-direction: column; }
+      .cat-featured-media { border-radius: var(--radius) var(--radius) 0 0; flex: 1 1 220px; }
       .cat-featured-content { border-radius: 0 0 var(--radius) var(--radius); padding: 28px 24px; }
+      .cat-featured-title { font-size: clamp(20px, 3vw, 26px); }
+      .cat-featured-desc { font-size: 13px; -webkit-line-clamp: 3; }
       .cat-featured-plus { top: -14px; left: 28px; }
     }
 
@@ -1044,6 +1046,49 @@
     .footer-social {
       display: flex;
       gap: 12px;
+    }
+
+    /* ─── YOUTUBE MODAL (Projetos) ──────────────────────── */
+    .yt-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.94);
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+    .yt-modal.open { display: flex; }
+    .yt-modal-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1120px;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 100px rgba(0,0,0,0.7);
+    }
+    .yt-modal-inner iframe { width: 100%; height: 100%; border: none; display: block; }
+    .yt-modal-close {
+      position: absolute;
+      top: -48px; right: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: background 0.25s, color 0.25s;
+      z-index: 2;
+    }
+    .yt-modal-close:hover { background: var(--accent); color: #000; }
+    @media (max-width: 720px) {
+      .yt-modal { padding: 20px; }
+      .yt-modal-close { top: auto; bottom: calc(100% + 8px); right: 0; }
     }
 
     /* ─── WHATSAPP FLOAT ─────────────────────────────────── */
@@ -1691,6 +1736,14 @@
     </div>
   </footer>
 
+  <!-- ─── YOUTUBE MODAL (Projetos) ────────────────────────── -->
+  <div class="yt-modal" id="ytModal">
+    <div class="yt-modal-inner">
+      <button class="yt-modal-close" id="ytModalClose" aria-label="Fechar">✕</button>
+      <iframe id="ytModalFrame" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <!-- ─── WHATSAPP FLOAT ─────────────────────────────────── -->
   <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="wa-float" title="Falar no WhatsApp">
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1767,17 +1820,29 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.stat-number[data-count]').forEach(el => counterObs.observe(el));
 
-    // ── YouTube lazy-load players (projects) ───────────────
+    // ── YouTube modal players (projects) ───────────────────
+    const ytModal = document.getElementById('ytModal');
+    const ytModalFrame = document.getElementById('ytModalFrame');
+    const ytModalClose = document.getElementById('ytModalClose');
+    function openYTModal(id) {
+      ytModalFrame.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      ytModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeYTModal() {
+      ytModal.classList.remove('open');
+      ytModalFrame.src = '';
+      document.body.style.overflow = '';
+    }
     document.querySelectorAll('[data-yt-id]').forEach(el => {
-      function loadYT() {
-        const id = el.getAttribute('data-yt-id');
-        el.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" title="YouTube video player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-      }
-      el.addEventListener('click', loadYT, { once: true });
+      el.addEventListener('click', () => openYTModal(el.getAttribute('data-yt-id')));
       el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadYT(); }
-      }, { once: true });
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openYTModal(el.getAttribute('data-yt-id')); }
+      });
     });
+    ytModalClose.addEventListener('click', closeYTModal);
+    ytModal.addEventListener('click', (e) => { if (e.target === ytModal) closeYTModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeYTModal(); });
 
     // ── FAQ accordion ─────────────────────────────────────
     document.querySelectorAll('.faq-question').forEach(question => {
