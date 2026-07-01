@@ -522,7 +522,7 @@
     /* Conteúdo de Volume — destaque */
     .cat-card.cat-featured {
       grid-column: 1 / -1;
-      height: clamp(150px, 17vw, 210px);
+      aspect-ratio: 3.1 / 1;
       display: flex;
       position: relative;
       background: transparent;
@@ -566,38 +566,38 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 10px 20px;
-      gap: 5px;
+      padding: 16px 32px;
+      gap: 8px;
     }
     .cat-featured-title {
       font-family: var(--sans);
       font-weight: 800;
       font-style: italic;
-      font-size: clamp(14px, 1.6vw, 22px);
+      font-size: clamp(16px, 2.2vw, 30px);
       color: #000;
       letter-spacing: -0.01em;
       line-height: 1.15;
     }
     .cat-featured-desc {
-      font-size: clamp(10px, 1vw, 12px);
-      line-height: 1.4;
+      font-size: clamp(11px, 1.1vw, 14px);
+      line-height: 1.45;
       color: rgba(0,0,0,0.75);
-      max-width: 380px;
+      max-width: 400px;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     .cat-featured-btn {
-      margin-top: 2px;
+      margin-top: 4px;
       background: #000;
       color: var(--accent);
-      font-size: clamp(9px, 0.9vw, 11px);
+      font-size: clamp(10px, 1vw, 12px);
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       white-space: nowrap;
-      padding: clamp(6px, 0.9vw, 10px) clamp(12px, 1.6vw, 22px);
+      padding: clamp(8px, 1vw, 13px) clamp(16px, 1.8vw, 26px);
       border-radius: 100px;
       display: inline-flex;
       align-items: center;
