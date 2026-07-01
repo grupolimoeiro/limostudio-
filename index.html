@@ -219,8 +219,13 @@
     }
     @media (max-width: 900px) {
       .hero { padding: 76px 20px 32px; }
-      .hero-video-wrap { border-radius: 16px; }
+      .hero-video-wrap { border-radius: 16px; aspect-ratio: auto; min-height: 560px; }
       .hero-title-word1, .hero-title-word2 { font-size: clamp(28px, 8vw, 52px); }
+    }
+    @media (max-width: 480px) {
+      .hero-video-wrap { min-height: 500px; }
+      .hero-actions { width: 100%; }
+      .hero-actions a { flex: 1 1 auto; text-align: center; }
     }
     .btn-primary {
       background: var(--accent);
