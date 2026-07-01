@@ -1703,6 +1703,21 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+    // ── Featured card height sync (match other cat-cards) ──
+    function syncFeaturedCardHeight() {
+      const ref = document.querySelector('.categories-grid .cat-card:not(.cat-featured)');
+      const featured = document.querySelector('.cat-card.cat-featured');
+      if (ref && featured) {
+        featured.style.height = ref.offsetHeight + 'px';
+      }
+    }
+    window.addEventListener('load', syncFeaturedCardHeight);
+    let featuredResizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(featuredResizeTimer);
+      featuredResizeTimer = setTimeout(syncFeaturedCardHeight, 150);
+    });
+
     // ── Animated counters ─────────────────────────────────
     function animateCounter(el) {
       const target = parseInt(el.getAttribute('data-count'));

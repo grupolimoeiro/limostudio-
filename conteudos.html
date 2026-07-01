@@ -1113,10 +1113,7 @@
     .video-breadcrumb a { color: var(--muted); transition: color 0.25s; }
     .video-breadcrumb a:hover { color: var(--accent); }
     .video-hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 60px;
-      align-items: end;
+      max-width: 640px;
     }
     .video-hero-title {
       font-size: clamp(32px, 4.2vw, 54px);
@@ -1143,73 +1140,101 @@
       flex-wrap: wrap;
       margin-top: 28px;
     }
-    .video-hero-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: 28px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-    }
-    .video-hero-stat { display: flex; align-items: baseline; gap: 10px; }
-    .video-hero-stat-num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 30px;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .video-hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.6); }
 
-    /* ─── DRIVE EMBED ────────────────────────────────────── */
-    .drive-section { padding: 70px 0 90px; background: var(--bg); }
-    .drive-frame-wrap {
+    /* ─── VIDEO GRID ─────────────────────────────────────── */
+    .video-grid-section { padding: 70px 0 90px; background: var(--bg); }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .video-card {
       position: relative;
+      aspect-ratio: 3/4;
       border-radius: var(--radius);
       overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(155deg, var(--bg3) 0%, var(--bg2) 55%, #161a05 100%);
       border: 1px solid var(--border);
-      background: var(--bg2);
+      transition: transform 0.4s var(--transition), border-color 0.4s;
     }
-    .drive-frame-bar {
+    .video-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 85% 12%, rgba(198,255,0,0.14) 0%, transparent 45%),
+        repeating-linear-gradient(115deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 18px);
+      pointer-events: none;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(198,255,0,0.35);
+    }
+    .video-card-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--accent);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
+      justify-content: center;
+      transition: transform 0.35s var(--transition), background 0.3s;
+      box-shadow: 0 8px 28px rgba(198,255,0,0.25);
     }
-    .drive-frame-bar-title {
+    .video-card-play svg { margin-left: 3px; }
+    .video-card:hover .video-card-play {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: #d4ff1a;
+    }
+    .video-card-icon {
+      position: absolute;
+      top: 16px; left: 16px;
+      color: rgba(255,255,255,0.18);
+    }
+
+    /* ─── VIDEO MODAL ────────────────────────────────────── */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    .video-modal.open { display: flex; }
+    .video-modal-inner {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+    }
+    .video-modal-inner iframe {
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-modal-close {
+      position: absolute;
+      top: -46px; right: 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.75);
+      justify-content: center;
+      font-size: 18px;
+      transition: background 0.25s;
     }
-    .drive-frame-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    .drive-frame-link {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.25s;
-    }
-    .drive-frame-link:hover { gap: 10px; }
-    .drive-frame { width: 100%; height: 720px; border: none; display: block; background: #fff; }
-    .drive-note {
-      margin-top: 18px;
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
-    }
-    .drive-note a { color: var(--accent); }
+    .video-modal-close:hover { background: var(--accent); color: #000; }
 
     /* ─── VIDEO CTA ──────────────────────────────────────── */
     .video-cta {
@@ -1232,9 +1257,13 @@
       max-width: 460px;
     }
     @media (max-width: 900px) {
-      .video-hero-grid { grid-template-columns: 1fr; gap: 32px; }
-      .drive-frame { height: 520px; }
+      .video-grid { grid-template-columns: repeat(3, 1fr); }
       .video-cta { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-modal { padding: 20px; }
+      .video-modal-close { top: -40px; }
     }
 </style>
 </head>
@@ -1283,45 +1312,66 @@
           <h1 class="video-hero-title">Todos os vídeos, em<br><em>um só lugar.</em></h1>
           <p class="video-hero-text">Aqui está o acervo completo de Conteúdo de Volume produzido pela LimoStudio: peças pensadas para gerar alcance contínuo, tendências rápidas e presença constante da sua marca.</p>
           <div class="video-hero-actions">
-            <a href="https://drive.google.com/drive/folders/1KjPKr8RpC6CwNsmHbrSO7fzoASkl7ax2?usp=share_link" target="_blank" rel="noopener" class="btn-primary">Abrir pasta no Drive</a>
-            <a href="index.html#contato" class="btn-outline-dark">Quero um projeto assim</a>
-          </div>
-        </div>
-        <div class="video-hero-stats reveal reveal-delay-2">
-          <div class="video-hero-stat">
-            <span class="video-hero-stat-num">+</span>
-            <span class="video-hero-stat-label">Vídeos atualizados continuamente</span>
-          </div>
-          <div class="video-hero-stat">
-            <span class="video-hero-stat-num">01</span>
-            <span class="video-hero-stat-label">Pasta com todo o acervo em vídeo</span>
-          </div>
-          <div class="video-hero-stat">
-            <span class="video-hero-stat-num">24/7</span>
-            <span class="video-hero-stat-label">Acesso direto pelo Google Drive</span>
+            <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Quero%20conte%C3%BAdo%20de%20volume%20para%20minha%20marca." target="_blank" rel="noopener" class="btn-primary">Quero conteúdo de volume</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── DRIVE EMBED ────────────────────────────────────── -->
-  <section class="drive-section">
+  <!-- ─── VIDEO GRID ─────────────────────────────────────── -->
+  <section class="video-grid-section">
     <div class="container">
-      <div class="drive-frame-wrap reveal">
-        <div class="drive-frame-bar">
-          <div class="drive-frame-bar-title">
-            <span class="drive-frame-dot"></span>
-            Conteúdo de Volume — pasta no Google Drive
-          </div>
-          <a href="https://drive.google.com/drive/folders/1KjPKr8RpC6CwNsmHbrSO7fzoASkl7ax2?usp=share_link" target="_blank" rel="noopener" class="drive-frame-link">
-            Abrir em nova aba
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
+      <div class="video-grid">
+        <div class="video-card reveal" data-video-id="1dx59MXz6pe6Klf27ca4VoaHedqDrKbPB" tabindex="0" role="button" aria-label="Assistir: Edição 2 - 775">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
-        <iframe class="drive-frame" src="https://drive.google.com/embeddedfolderview?id=1KjPKr8RpC6CwNsmHbrSO7fzoASkl7ax2#grid" allow="autoplay" loading="lazy"></iframe>
+        <div class="video-card reveal" data-video-id="1aV2Y1pYtWUmM9f_SjselVRwPIDw7eCJ7" tabindex="0" role="button" aria-label="Assistir: Motion - Cacau do Céu 3">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1UteOC9LLJmE_Z4KMcnQdO9Z7cBbgKmXQ" tabindex="0" role="button" aria-label="Assistir: Reels - O essencial não chama atenção - Auren">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="12ovGEynFhDbOhxo2_kqGrxv6Xi5p9yaD" tabindex="0" role="button" aria-label="Assistir: detalhes">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1kbMun7vxfI1SjEnez2ewQlZQ21aSK_O_" tabindex="0" role="button" aria-label="Assistir: Nova identidade - Massas Daiana">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="175psSOz00UDcRj3GgxIAnlEE_t7wdWnR" tabindex="0" role="button" aria-label="Assistir: Projeto IVE">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="18gyVYUSeb7jY6N25UR1rwXdpdN-ionL3" tabindex="0" role="button" aria-label="Assistir: After Movie 2 - Evento Laure Advogados">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1LQjtVmpHY_fsl9p2J_Z1ahegeYhb77Qo" tabindex="0" role="button" aria-label="Assistir: Evento - CIESP">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1cqqTOyc49ije8YTHW8zgmj2LuRPl97jf" tabindex="0" role="button" aria-label="Assistir: Reels 01 - Viradas Épicas – Eduardo Abrão">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1bz0plZBgnuIR1VgEIoVAJFuDKAEK_2xV" tabindex="0" role="button" aria-label="Assistir: Reels 01 Apresentação da empresa">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1C2KOifz5nUT5F2A1HBlUUtScohwF4xyF" tabindex="0" role="button" aria-label="Assistir: Reels 01 Apresentação - Eduardo Nery">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="video-card reveal" data-video-id="1lC4yyWO3GW6zepsDQqH8X7DyjYIEc45i" tabindex="0" role="button" aria-label="Assistir: FPS ELEONORA - Nature">
+          <svg class="video-card-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 9l5-3v12l-5-3"/></svg>
+          <div class="video-card-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
       </div>
-      <p class="drive-note">Não está carregando? <a href="https://drive.google.com/drive/folders/1KjPKr8RpC6CwNsmHbrSO7fzoASkl7ax2?usp=share_link" target="_blank" rel="noopener">acesse a pasta diretamente no Google Drive</a>.</p>
 
       <div class="video-cta reveal">
         <div class="video-cta-title">Gostou do que viu? Vamos criar o próximo lote de conteúdos para a sua marca.</div>
@@ -1371,6 +1421,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- ─── VIDEO MODAL ────────────────────────────────────── -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Fechar">✕</button>
+      <iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
 
   <!-- ─── WHATSAPP FLOAT ─────────────────────────────────── -->
   <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" class="wa-float" title="Falar no WhatsApp">
@@ -1466,6 +1524,33 @@
         }
       });
     });
+
+    // ── Video modal ────────────────────────────────────────
+    const videoModal = document.getElementById('videoModal');
+    const videoFrame = document.getElementById('videoFrame');
+    const videoModalClose = document.getElementById('videoModalClose');
+    function openVideoModal(id) {
+      videoFrame.src = `https://drive.google.com/file/d/${id}/preview`;
+      videoModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVideoModal() {
+      videoModal.classList.remove('open');
+      videoFrame.src = '';
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => openVideoModal(card.getAttribute('data-video-id')));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openVideoModal(card.getAttribute('data-video-id'));
+        }
+      });
+    });
+    videoModalClose.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideoModal(); });
 
     // ── Contact form ──────────────────────────────────────
     function submitForm(e) {
