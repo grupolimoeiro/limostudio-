@@ -522,7 +522,7 @@
     /* Conteúdo de Volume — destaque */
     .cat-card.cat-featured {
       grid-column: 1 / -1;
-      min-height: clamp(190px, 19vw, 230px);
+      height: clamp(190px, 19vw, 230px);
       display: flex;
       position: relative;
       background: transparent;
@@ -1064,6 +1064,7 @@
       position: relative;
       width: 100%;
       max-width: 1120px;
+      max-height: 100%;
       aspect-ratio: 16/9;
       border-radius: var(--radius);
       overflow: hidden;
@@ -1073,22 +1074,22 @@
     .yt-modal-inner iframe { width: 100%; height: 100%; border: none; display: block; }
     .yt-modal-close {
       position: absolute;
-      top: -48px; right: 0;
+      top: 14px; right: 14px;
       width: 38px; height: 38px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.25);
       color: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
       transition: background 0.25s, color 0.25s;
       z-index: 2;
     }
-    .yt-modal-close:hover { background: var(--accent); color: #000; }
+    .yt-modal-close:hover { background: var(--accent); color: #000; border-color: var(--accent); }
     @media (max-width: 720px) {
-      .yt-modal { padding: 20px; }
-      .yt-modal-close { top: auto; bottom: calc(100% + 8px); right: 0; }
+      .yt-modal { padding: 16px; }
     }
 
     /* ─── WHATSAPP FLOAT ─────────────────────────────────── */
@@ -1451,10 +1452,6 @@
         </div>
         <div class="projects-grid-item reveal" data-yt-id="WUOss4BAj48" role="button" tabindex="0" aria-label="Assistir vídeo">
           <img src="https://img.youtube.com/vi/WUOss4BAj48/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/WUOss4BAj48/hqdefault.jpg'">
-          <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="projects-grid-item reveal" data-yt-id="jygoSzbHPJI" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/jygoSzbHPJI/maxresdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jygoSzbHPJI/hqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="jygoSzbHPJI" role="button" tabindex="0" aria-label="Assistir vídeo">
