@@ -470,9 +470,6 @@
       cursor: pointer;
       group: true;
     }
-    .cat-card:last-child:nth-child(7) {
-      grid-column: 2;
-    }
     .cat-card img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -524,27 +521,66 @@
 
     /* Conteúdo de Volume — destaque */
     .cat-card.cat-featured {
+      grid-column: 1 / -1;
       aspect-ratio: auto;
-      min-height: 280px;
-      background: var(--accent);
-      grid-column: span 1;
-    }
-    .cat-card.cat-featured img { display: none; }
-    .cat-card.cat-featured .cat-card-overlay { display: none; }
-    .cat-card.cat-featured .cat-card-body {
+      min-height: 320px;
+      display: flex;
       position: relative;
-      padding: 32px 28px;
-      height: 100%;
+      background: transparent;
+      overflow: visible;
+    }
+    .cat-featured-plus {
+      position: absolute;
+      top: 28px;
+      left: -14px;
+      font-family: var(--sans);
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      z-index: 2;
+    }
+    .cat-featured-media {
+      position: relative;
+      flex: 1 1 45%;
+      border-radius: var(--radius) 0 0 var(--radius);
+      overflow: hidden;
+    }
+    .cat-featured-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .cat-featured-content {
+      flex: 1 1 55%;
+      background: var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 48px;
     }
-    .cat-card.cat-featured .cat-card-num { color: rgba(0,0,0,0.4); }
-    .cat-card.cat-featured .cat-card-name { color: #000; font-size: clamp(22px, 2.5vw, 30px); }
-    .cat-card.cat-featured .cat-card-desc {
-      color: rgba(0,0,0,0.65);
-      max-height: 120px;
-      opacity: 1;
+    .cat-featured-title {
+      font-family: var(--sans);
+      font-weight: 800;
+      font-style: italic;
+      font-size: clamp(24px, 2.6vw, 34px);
+      color: #000;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+    .cat-featured-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(0,0,0,0.75);
+      max-width: 360px;
+    }
+    @media (max-width: 720px) {
+      .cat-card.cat-featured { flex-direction: column; }
+      .cat-featured-media { border-radius: var(--radius) var(--radius) 0 0; flex: 1 1 220px; }
+      .cat-featured-content { border-radius: 0 0 var(--radius) var(--radius); }
+      .cat-featured-plus { top: -14px; left: 28px; }
     }
 
     /* ─── FOTOS ──────────────────────────────────────────── */
@@ -1137,14 +1173,13 @@
             <strong>Todos os dias, você faz acontecer</strong>, transforma vidas e constrói algo que merece ser visto. Mas se ninguém conhece o que você faz, <em>como vai reconhecer o seu valor?</em>
           </p>
           <p class="about-text reveal reveal-delay-3">
-            Nós acreditamos que boas histórias não podem passar despercebidas. Elas precisam ser contadas — com intenção, com estética e com o poder de fazer as pessoas sentirem.
+            Nós acreditamos que boas histórias não podem passar despercebidas. Elas precisam ser contadas com intenção, com estética e com o poder de fazer as pessoas sentirem.
           </p>
           <a href="#contato" class="btn-primary reveal reveal-delay-4">Vamos conversar</a>
         </div>
         <div class="about-right">
           <div class="about-image-wrap reveal reveal-delay-2">
             <img src="banners/Foto01.png" alt="LimoStudio em produção">
-            <div class="about-image-badge">Produtora Audiovisual</div>
           </div>
         </div>
       </div>
@@ -1243,10 +1278,13 @@
         </div>
 
         <div class="cat-card cat-featured reveal reveal-delay-2">
-          <div class="cat-card-body">
-            <div class="cat-card-num">07</div>
-            <div class="cat-card-name">Conteúdo de Volume</div>
-            <div class="cat-card-desc">Produção contínua e estratégica de vídeos para gerar alcance e relevância, com tendências, chamadas rápidas e conteúdos que mantém sua marca em evidência.</div>
+          <div class="cat-featured-plus">+</div>
+          <div class="cat-featured-media">
+            <img src="banners/CONTEUDODEVOLUME.png" alt="Conteúdo de Volume" loading="lazy">
+          </div>
+          <div class="cat-featured-content">
+            <h3 class="cat-featured-title">Conteúdo de Volume</h3>
+            <p class="cat-featured-desc">Produção contínua e estratégica de vídeos para gerar alcance e relevância, com tendências, chamadas rápidas e conteúdos que mantêm sua marca em evidência todos os dias.</p>
           </div>
         </div>
       </div>
