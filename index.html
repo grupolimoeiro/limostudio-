@@ -718,10 +718,11 @@
       gap: 16px;
       justify-items: center;
     }
-    /* Centraliza última linha quando não fecha 3 colunas */
-    .projects-grid::after {
-      content: '';
-      grid-column: span 1;
+    .projects-grid .projects-grid-item:last-child:nth-child(3n - 1) {
+      grid-column: 2 / 3;
+    }
+    .projects-grid .projects-grid-item:nth-last-child(2):nth-child(3n + 1) {
+      grid-column: 1 / 2;
     }
     .projects-grid-item {
       position: relative;
@@ -1457,14 +1458,15 @@
             Nossos <em>projetos</em>
           </h2>
         </div>
+        <a href="projetos.html" target="_blank" class="btn-outline reveal reveal-delay-2">Ver todos os projetos</a>
       </div>
 
       <div class="projects-featured reveal" data-yt-id="G9CZCICfu_g" role="button" tabindex="0" aria-label="Assistir vídeo">
-        <img src="https://img.youtube.com/vi/G9CZCICfu_g/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/G9CZCICfu_g/mqdefault.jpg'">
+        <img src="https://img.youtube.com/vi/G9CZCICfu_g/hqdefault.jpg" alt="Auren - Em Equilíbrio" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/G9CZCICfu_g/mqdefault.jpg'">
         <div class="projects-play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
       </div>
 
-      <div class="projects-grid" style="justify-items: center;">
+      <div class="projects-grid">
         <div class="projects-grid-item reveal" data-yt-id="23R_wzfQ_UI" role="button" tabindex="0" aria-label="Assistir vídeo">
           <img src="https://img.youtube.com/vi/23R_wzfQ_UI/hqdefault.jpg" alt="Tia Zuma — Nossa Essência" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/23R_wzfQ_UI/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
@@ -1474,27 +1476,27 @@
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="1In_sEIsa3A" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/1In_sEIsa3A/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/1In_sEIsa3A/mqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/1In_sEIsa3A/hqdefault.jpg" alt="Cartonader — Institucional" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/1In_sEIsa3A/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="WUOss4BAj48" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/WUOss4BAj48/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/WUOss4BAj48/mqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/WUOss4BAj48/hqdefault.jpg" alt="Divinas Cunhã" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/WUOss4BAj48/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="jygoSzbHPJI" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/jygoSzbHPJI/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jygoSzbHPJI/mqdefault.jpg'">
-          <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="projects-grid-item reveal" data-yt-id="L7c4yNZIl4M" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/L7c4yNZIl4M/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/L7c4yNZIl4M/mqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/jygoSzbHPJI/hqdefault.jpg" alt="Decorium — A Nossa História" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jygoSzbHPJI/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="jksoXqB-CmI" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/jksoXqB-CmI/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jksoXqB-CmI/mqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/jksoXqB-CmI/hqdefault.jpg" alt="Divinas Cunhã — O Perfume" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/jksoXqB-CmI/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="projects-grid-item reveal" data-yt-id="LOilWNdFYnc" role="button" tabindex="0" aria-label="Assistir vídeo">
-          <img src="https://img.youtube.com/vi/LOilWNdFYnc/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/LOilWNdFYnc/mqdefault.jpg'">
+          <img src="https://img.youtube.com/vi/LOilWNdFYnc/hqdefault.jpg" alt="Caetano Capricio — Histórias" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/LOilWNdFYnc/mqdefault.jpg'">
+          <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="projects-grid-item reveal" data-yt-id="L7c4yNZIl4M" role="button" tabindex="0" aria-label="Assistir vídeo">
+          <img src="https://img.youtube.com/vi/L7c4yNZIl4M/hqdefault.jpg" alt="SESC — Circuito de Artes" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/L7c4yNZIl4M/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
       </div>
