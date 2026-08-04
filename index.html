@@ -716,6 +716,12 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+      justify-items: center;
+    }
+    /* Centraliza última linha quando não fecha 3 colunas */
+    .projects-grid::after {
+      content: '';
+      grid-column: span 1;
     }
     .projects-grid-item {
       position: relative;
@@ -1218,7 +1224,7 @@
   <!-- ─── HERO ───────────────────────────────────────────── -->
   <section class="hero" id="inicio">
     <div class="hero-video-wrap">
-      <video autoplay muted loop playsinline poster="banners/INSTITUCIONAL.png">
+      <video autoplay muted loop playsinline>
         <source src="showreel.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
@@ -1451,7 +1457,6 @@
             Nossos <em>projetos</em>
           </h2>
         </div>
-        <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Gostaria%20de%20conhecer%20os%20projetos%20do%20LimoStudio." target="_blank" class="btn-outline reveal reveal-delay-2">Ver no WhatsApp</a>
       </div>
 
       <div class="projects-featured reveal" data-yt-id="G9CZCICfu_g" role="button" tabindex="0" aria-label="Assistir vídeo">
@@ -1459,7 +1464,15 @@
         <div class="projects-play"><svg width="26" height="26" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
       </div>
 
-      <div class="projects-grid">
+      <div class="projects-grid" style="justify-items: center;">
+        <div class="projects-grid-item reveal" data-yt-id="23R_wzfQ_UI" role="button" tabindex="0" aria-label="Assistir vídeo">
+          <img src="https://img.youtube.com/vi/23R_wzfQ_UI/hqdefault.jpg" alt="Tia Zuma — Nossa Essência" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/23R_wzfQ_UI/mqdefault.jpg'">
+          <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="projects-grid-item reveal" data-yt-id="Y5HXzqb_qxo" role="button" tabindex="0" aria-label="Assistir vídeo">
+          <img src="https://img.youtube.com/vi/Y5HXzqb_qxo/hqdefault.jpg" alt="Sicoob 3 Colinas — Institucional Camari" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/Y5HXzqb_qxo/mqdefault.jpg'">
+          <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
         <div class="projects-grid-item reveal" data-yt-id="1In_sEIsa3A" role="button" tabindex="0" aria-label="Assistir vídeo">
           <img src="https://img.youtube.com/vi/1In_sEIsa3A/hqdefault.jpg" alt="" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/1In_sEIsa3A/mqdefault.jpg'">
           <div class="projects-play"><svg width="14" height="14" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
