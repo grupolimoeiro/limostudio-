@@ -379,6 +379,16 @@
       aspect-ratio: 3/4;
     }
     .about-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .about-slide.is-active { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .about-slide { transition: none; }
+    }
     .about-image-badge {
       position: absolute;
       bottom: 24px;
@@ -1274,7 +1284,11 @@
         </div>
         <div class="about-right">
           <div class="about-image-wrap reveal reveal-delay-2">
-            <img src="assets/banners/Foto01.png" alt="LimoStudio em produção">
+            <img class="about-slide is-active" src="assets/banners/Foto01.png" alt="LimoStudio em produção">
+            <img class="about-slide" src="assets/banners/Foto02.png" alt="" loading="lazy">
+            <img class="about-slide" src="assets/banners/Foto03.png" alt="" loading="lazy">
+            <img class="about-slide" src="assets/banners/Foto04.png" alt="" loading="lazy">
+            <img class="about-slide" src="assets/banners/Foto05.png" alt="" loading="lazy">
           </div>
         </div>
       </div>
@@ -1886,6 +1900,17 @@
       const message = document.getElementById('message').value;
       const text = `Olá! Sou ${name}${category ? `, tenho interesse em ${category}` : ''}.${message ? '\n\n' + message : ''}`;
       window.open(`https://api.whatsapp.com/send?phone=5516982062295&text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ── About slideshow ───────────────────────────────────
+    const aboutSlides = document.querySelectorAll('.about-slide');
+    if (aboutSlides.length > 1) {
+      let aboutIndex = 0;
+      setInterval(() => {
+        aboutSlides[aboutIndex].classList.remove('is-active');
+        aboutIndex = (aboutIndex + 1) % aboutSlides.length;
+        aboutSlides[aboutIndex].classList.add('is-active');
+      }, 4000);
     }
   </script>
 
