@@ -498,6 +498,14 @@
         });
       });
     });
+
+    // Filtro via URL (?filter=)
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam) {
+      const btn = [...document.querySelectorAll('.filter-btn')].find(b => b.dataset.filter === filterParam);
+      if (btn) btn.click();
+    }
   </script>
 
 </body>
