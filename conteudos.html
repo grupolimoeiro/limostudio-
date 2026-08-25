@@ -1103,7 +1103,7 @@
     }
   
     /* ─── VIDEO PAGE HERO ────────────────────────────────── */
-    .video-hero { padding: 140px 0 60px; background: var(--bg2); }
+    .video-hero { padding: 104px 0 36px; background: var(--bg2); }
     .video-breadcrumb {
       font-size: 12px;
       letter-spacing: 0.05em;
@@ -1113,10 +1113,13 @@
     .video-breadcrumb a { color: var(--muted); transition: color 0.25s; }
     .video-breadcrumb a:hover { color: var(--accent); }
     .video-hero-grid {
-      max-width: 640px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
     }
     .video-hero-title {
-      font-size: clamp(32px, 4.2vw, 54px);
+      font-size: clamp(38px, 5.5vw, 76px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.1;
@@ -1274,6 +1277,7 @@
       max-width: 460px;
     }
     @media (max-width: 900px) {
+      .video-hero-grid { grid-template-columns: 1fr; gap: 24px; }
       .video-grid { grid-template-columns: repeat(3, 1fr); }
       .video-cta { flex-direction: column; align-items: flex-start; }
     }
@@ -1325,7 +1329,9 @@
       </div>
       <div class="video-hero-grid">
         <div class="reveal">
-          <h1 class="video-hero-title">Todos os vídeos, em<br><em>um só lugar.</em></h1>
+          <h1 class="video-hero-title">Conteúdo<br><em>de Volume</em></h1>
+        </div>
+        <div class="reveal reveal-delay-1">
           <p class="video-hero-text">Aqui está o acervo completo de Conteúdo de Volume produzido pela LimoStudio: peças pensadas para gerar alcance contínuo, tendências rápidas e presença constante da sua marca.</p>
           <div class="video-hero-actions">
             <a href="https://api.whatsapp.com/send?phone=5516982062295&text=Olá!%20Quero%20conte%C3%BAdo%20de%20volume%20para%20minha%20marca." target="_blank" rel="noopener" class="btn-primary">Quero conteúdo de volume</a>
